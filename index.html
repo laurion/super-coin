@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script>
+      let money = 250;
+      let headsProbability = 0.6;
+      document.getElementById("flip_button").addEventListener("click", (e) => {
+        console.log("@");
+      })
+    </script>
+  </head>
+  <body>
+    Probability of heads: 60% <br/>
+    Can you get to $2500?<br/>
+    Money: <span id="money"></span>
+    <br/>
+    <input type="radio" id="heads"><label>heads</label></input>
+    <input type="radio" id="tails"><label>tails</label></input>
+    <input type="text" value="bet amount" id="sum">
+    <input type="button" value="Flip!" id="flip_button">
+    <table id="results">
+    </table>
+  </body>
+</html>
