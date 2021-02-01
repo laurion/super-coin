@@ -1,23 +1,56 @@
 <html>
   <head>
     <script>
+      let turns = 0;
       let money = 250;
       let headsProbability = 0.6;
-      document.getElementById("flip_button").addEventListener("click", (e) => {
-        console.log("@");
-      })
+      document.getElementById("flip_button").onclick = (e) => { 
+        console.log("@"); 
+        turns += 1
+        
+        let betAmount = document.getElementById("sum").value;
+        if(betAmount > money) return false;
+        money -= betAmount;
+        
+        let headsChecked = document.getElementById("heads").checked
+        let tailsChecked = document.getElementById("tails").checked
+        
+        if(!headsChecked && !tailsChecked) return false;
+        
+        let betResult = Math.random() > headsProbability ? tailsChecked : headsChecked;
+        
+        if(betResult){
+          money += betAmount;
+        }
+        
+        let resultsTable = document.getElementById("results")
+        let row = resultsTable.insertRow()
+        row.insertCell().innerHTML = turns;
+        row.insertCell().innerHTML = headsChecked ? "Heads" : "Tails";
+        row.insertCell().innerHTML = betAmount;
+        row.insertCell().innerHTML = betResult ? "Win" : "Loss";
+        row.insertCell().innerHTML = money;
+        return false;
+      }
     </script>
   </head>
   <body>
     Probability of heads: 60% <br/>
     Can you get to $2500?<br/>
-    Money: <span id="money"></span>
+    Balance: <span id="money">$250</span>
     <br/>
-    <input type="radio" id="heads"><label>heads</label></input>
-    <input type="radio" id="tails"><label>tails</label></input>
-    <input type="text" value="bet amount" id="sum">
+    <fieldset id="heads_tails">
+      <input type="radio" id="heads" name="heads_tails"><label>heads</label>
+      <input type="radio" id="tails" name="heads_tails"><label>tails</label>
+    </fieldset>
+    <input type="text" placeholder="bet amount" id="sum">
     <input type="button" value="Flip!" id="flip_button">
     <table id="results">
+      <th>Turn</th>
+      <th>Your bet</th>
+      <th>Bet amount</th>
+      <th>Result</th>
+      <th>Balance</th>
     </table>
   </body>
 </html>
