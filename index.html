@@ -1,5 +1,13 @@
 <html>
   <head>
+    <style>
+      th,td {
+        width: 100;
+      }
+      table {
+          text-align: center;
+      }
+    </style>
   </head>
   <body>
     Probability of heads: 60% <br/>
@@ -12,12 +20,16 @@
     </fieldset>
     <input type="text" placeholder="bet amount" id="sum">
     <input type="button" value="Flip!" id="flip_button">
-    <table id="results">
+    
+    <table>
       <th>Turn</th>
       <th>Your bet</th>
       <th>Bet amount</th>
       <th>Result</th>
       <th>Balance</th>
+    </table>
+    <table id="results">
+      
     </table>
     <script>
       let turns = 0;
@@ -42,7 +54,7 @@
         else money -= betAmount;
         
         let resultsTable = document.getElementById("results")
-        let row = resultsTable.insertRow()
+        let row = resultsTable.insertRow(0)
         row.insertCell().innerHTML = turns;
         row.insertCell().innerHTML = headsChecked ? "Heads" : "Tails";
         row.insertCell().innerHTML = betAmount;
