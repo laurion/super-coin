@@ -1,5 +1,15 @@
 <html>
   <head>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-analytics.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script> -->
+
+
     <style>
       th,td {
         width: 100;
@@ -31,37 +41,6 @@
     <table id="results">
       
     </table>
-    <script>
-      let turns = 0;
-      let money = 250;
-      let headsProbability = 0.6;
-      document.getElementById("flip_button").onclick = (e) => { 
-        console.log("@"); 
-        
-        let betAmount = parseInt(document.getElementById("sum").value);
-        if(betAmount > money) return false;
-        
-        let headsChecked = document.getElementById("heads").checked
-        let tailsChecked = document.getElementById("tails").checked
-        
-        if(!headsChecked && !tailsChecked) return false;
-        
-        turns += 1
-        
-        let betResult = Math.random() > headsProbability ? tailsChecked : headsChecked;
-        
-        if(betResult) money += betAmount
-        else money -= betAmount;
-        
-        let resultsTable = document.getElementById("results")
-        let row = resultsTable.insertRow(0)
-        row.insertCell().innerHTML = turns;
-        row.insertCell().innerHTML = headsChecked ? "Heads" : "Tails";
-        row.insertCell().innerHTML = betAmount;
-        row.insertCell().innerHTML = betResult ? "Win" : "Loss";
-        row.insertCell().innerHTML = money;
-        return false;
-      }
-    </script>
+    <script src="index.js"></script>
   </body>
 </html>
