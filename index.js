@@ -18,7 +18,7 @@ document.getElementById("flip_button").onclick = (e) => {
   console.log("@");
   
   let betAmount = parseInt(document.getElementById("sum").value);
-  if(betAmount > money) return false;
+  if(!betAmount || betAmount > money) return false;
   
   let headsChecked = document.getElementById("heads").checked
   let tailsChecked = document.getElementById("tails").checked
