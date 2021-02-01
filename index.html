@@ -1,36 +1,5 @@
 <html>
   <head>
-    <script>
-      let turns = 0;
-      let money = 250;
-      let headsProbability = 0.6;
-      document.getElementById("flip_button").onclick = (e) => { 
-        console.log("@"); 
-        turns += 1
-        
-        let betAmount = parseInt(document.getElementById("sum").value);
-        if(betAmount > money) return false;
-        
-        let headsChecked = document.getElementById("heads").checked
-        let tailsChecked = document.getElementById("tails").checked
-        
-        if(!headsChecked && !tailsChecked) return false;
-        
-        let betResult = Math.random() > headsProbability ? tailsChecked : headsChecked;
-        
-        if(betResult) money += betAmount
-        else money -= betAmount;
-        
-        let resultsTable = document.getElementById("results")
-        let row = resultsTable.insertRow()
-        row.insertCell().innerHTML = turns;
-        row.insertCell().innerHTML = headsChecked ? "Heads" : "Tails";
-        row.insertCell().innerHTML = betAmount;
-        row.insertCell().innerHTML = betResult ? "Win" : "Loss";
-        row.insertCell().innerHTML = money;
-        return false;
-      }
-    </script>
   </head>
   <body>
     Probability of heads: 60% <br/>
@@ -50,5 +19,37 @@
       <th>Result</th>
       <th>Balance</th>
     </table>
+    <script>
+      let turns = 0;
+      let money = 250;
+      let headsProbability = 0.6;
+      document.getElementById("flip_button").onclick = (e) => { 
+        console.log("@"); 
+        
+        let betAmount = parseInt(document.getElementById("sum").value);
+        if(betAmount > money) return false;
+        
+        let headsChecked = document.getElementById("heads").checked
+        let tailsChecked = document.getElementById("tails").checked
+        
+        if(!headsChecked && !tailsChecked) return false;
+        
+        turns += 1
+        
+        let betResult = Math.random() > headsProbability ? tailsChecked : headsChecked;
+        
+        if(betResult) money += betAmount
+        else money -= betAmount;
+        
+        let resultsTable = document.getElementById("results")
+        let row = resultsTable.insertRow()
+        row.insertCell().innerHTML = turns;
+        row.insertCell().innerHTML = headsChecked ? "Heads" : "Tails";
+        row.insertCell().innerHTML = betAmount;
+        row.insertCell().innerHTML = betResult ? "Win" : "Loss";
+        row.insertCell().innerHTML = money;
+        return false;
+      }
+    </script>
   </body>
 </html>
