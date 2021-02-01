@@ -8,9 +8,8 @@
         console.log("@"); 
         turns += 1
         
-        let betAmount = document.getElementById("sum").value;
+        let betAmount = parseInt(document.getElementById("sum").value);
         if(betAmount > money) return false;
-        money -= betAmount;
         
         let headsChecked = document.getElementById("heads").checked
         let tailsChecked = document.getElementById("tails").checked
@@ -19,9 +18,8 @@
         
         let betResult = Math.random() > headsProbability ? tailsChecked : headsChecked;
         
-        if(betResult){
-          money += betAmount;
-        }
+        if(betResult) money += betAmount
+        else money -= betAmount;
         
         let resultsTable = document.getElementById("results")
         let row = resultsTable.insertRow()
